@@ -1,16 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { FormsModule }   from '@angular/forms';
+
+import { AdregServiceService } from './adreg-service.service';
 
 import { AppComponent } from './app.component';
+import { MapkoComponent } from './mapko/mapko.component';
+import { NavbarkoComponent } from './navbarko/navbarko.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapkoComponent,
+    NavbarkoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, HttpModule, FormsModule
   ],
-  providers: [],
+  providers: [AdregServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

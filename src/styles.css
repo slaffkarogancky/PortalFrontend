@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+html{
+    height: 100%;
+  }
+  
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+
+
+#popup-content span.detail-title {
+  font-weight: bold;
+  font-size: x-small;
+}
+  
+#popup-content span.detail-value {
+  font-style: italic;
+  font-size: x-small;
+}
+
+.detail-row {
+  margin-top: -2px;
+}
+  

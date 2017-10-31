@@ -1,0 +1,144 @@
+<div class="btnnavbar">
+        
+        <button (click)="updateAdvert()" type="button" id="navbar2" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Внешняя реклама">
+          <img src="./assets/images/ic_dvr_white_18dp_2x.png"/>
+        </button>  
+        <button (click)="updateDocProf()" type="button" id="navbar1" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Обращения граждан">
+          <img src="./assets/images/ic_contact_mail_white_18dp_2x.png"/>
+        </button>
+        <button (click)="updateEducation()" type="button" id="navbar3" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Образование">
+          <img src="./assets/images/ic_school_white_18dp_2x.png"/>
+        </button>
+        <button (click)="updateTrade()" type="button" id="navbar11" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Торговля">
+          <img src="./assets/images/ic_shopping_cart_white_18dp_2x.png"/>
+         </button>
+        <button (click)="updateMedicine()" type="button" id="navbar4" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Медицина">
+          <img src="./assets/images/ic_local_hospital_white_18dp_2x.png"/>
+        </button>
+        <!--   <button type="button" id="navbar5" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Кафе, рестораны">
+           <img src="./assets/images/ic_restaurant_white_18dp_2x.png"/>
+          </button>				
+                <button type="button" id="navbar6" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Полиция, суд">
+          <img src="./assets/images/ic_security_white_18dp_2x.png"/>
+        </button>             
+                 <button type="button" id="navbar7" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Бизнес">
+           <img src="./assets/images/ic_business_center_white_18dp_2x.png"/>
+          </button>				
+        <button type="button" id="navbar8" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Достопримечательности">
+          <img src="./assets/images/ic_explore_white_18dp_2x.png"/>
+        </button>
+        <button type="button" id="navbar9" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Транспорт">
+          <img src="./assets/images/ic_directions_transit_white_18dp_2x.png"/>
+        </button>
+        <button type="button" id="navbar10" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Спорт">
+          <img src="./assets/images/ic_pool_white_18dp_2x.png"/>
+        </button> -->
+
+</div>
+
+<div class="details">
+  <div id="detaildfooter" [class.green-background]="_isAdvertActive()" 
+                          [class.blue-background]="_isDocprofActive()"  
+                          [class.red-background]="_isMedicineActive()"
+                          [class.yellow-background]="_isEducationActive()"
+                          [class.light-blue-background]="_isTradeActive()">{{title}}</div>
+  <div id="content">
+      <div *ngIf="_isAdvertActive()">
+        <div class="singlerow">
+             <label><input (change)="updateAdvert()" [(ngModel)]="advertCheckboxes[0]" type="checkbox" checked/> наземные</label>
+             <span class="tag-count green-background">{{advertValues[0]}}</span>
+         </div>
+        <div class="singlerow">
+             <label><input (change)="updateAdvert()" [(ngModel)]="advertCheckboxes[1]" type="checkbox" checked/> фасадные</label>
+             <span class="tag-count green-background">{{advertValues[1]}}</span>
+         </div>
+        <div class="singlerow">
+             <label><input (change)="updateAdvert()" [(ngModel)]="advertCheckboxes[2]" type="checkbox" checked/> на опоре</label>
+             <span class="tag-count green-background">{{advertValues[2]}}</span>
+         </div>
+        <div class="singlerow">
+             <label><input (change)="updateAdvert()" [(ngModel)]="advertCheckboxes[3]" type="checkbox" checked/> на растяжке</label>
+             <span class="tag-count green-background">{{advertValues[3]}}</span>
+         </div>
+         <div class="singlerow">
+             <label><input (change)="updateAdvert()" [(ngModel)]="advertCheckboxes[4]" type="checkbox" checked/> на ограждении</label>
+             <span class="tag-count green-background">{{advertValues[4]}}</span>
+         </div>
+      </div>  
+
+      <div *ngIf="_isDocprofActive()">
+        <div class="singlerow">
+             <label><input type="radio" (change)="updateDocProf()" [(ngModel)]="selectedDocProf" name="docprof" value = "today" /> за сегодня</label>
+             <span class="tag-count blue-background">{{docprof_now}}</span>
+         </div>
+        <div class="singlerow">
+             <label><input type="radio" (change)="updateDocProf()"[(ngModel)]="selectedDocProf" name="docprof" value = "seven" checked/> за 7 дней</label>
+             <span class="tag-count blue-background">{{docprof_7}}</span>
+         </div>
+        <div class="singlerow">
+             <label><input type="radio" (change)="updateDocProf()" [(ngModel)]="selectedDocProf" name="docprof" value = "thirsty" /> за 30 дней</label>
+             <span class="tag-count blue-background">{{docprof_30}}</span>
+         </div> 
+      </div>   
+      
+      <div *ngIf="_isMedicineActive()">
+          <div class="singlerow">
+              <label><input (change)="updateMedicine()" [(ngModel)]="medicineCheckboxes[0]" type="checkbox" checked/> аптеки</label>
+              <span class="tag-count red-background">{{medicineValues[0]}}</span>
+          </div>
+         <div class="singlerow">
+              <label><input (change)="updateMedicine()" [(ngModel)]="medicineCheckboxes[1]" type="checkbox" checked/> больницы</label>
+              <span class="tag-count red-background">{{medicineValues[1]}}</span>
+          </div>
+         <div class="singlerow">
+              <label><input (change)="updateMedicine()" [(ngModel)]="medicineCheckboxes[2]" type="checkbox" checked/> поликлиники</label>
+              <span class="tag-count red-background">{{medicineValues[2]}}</span>
+          </div>
+         <div class="singlerow">
+              <label><input (change)="updateMedicine()" [(ngModel)]="medicineCheckboxes[3]" type="checkbox" checked/> прочее</label>
+              <span class="tag-count red-background">{{medicineValues[3]}}</span>
+          </div>
+       </div>   
+
+
+       <div *ngIf="_isEducationActive()">
+        <div class="singlerow">
+            <label><input (change)="updateEducation()" [(ngModel)]="educationCheckboxes[0]" type="checkbox" checked/> школы, гимназии</label>
+            <span class="tag-count yellow-background">{{educationValues[0]}}</span>
+        </div>
+       <div class="singlerow">
+            <label><input (change)="updateEducation()" [(ngModel)]="educationCheckboxes[1]" type="checkbox" checked/> ясли, садики</label>
+            <span class="tag-count yellow-background">{{educationValues[1]}}</span>
+        </div>
+       <div class="singlerow">
+            <label><input (change)="updateEducation()" [(ngModel)]="educationCheckboxes[2]" type="checkbox" checked/> библиотеки</label>
+            <span class="tag-count yellow-background">{{educationValues[2]}}</span>
+        </div>
+       <div class="singlerow">
+            <label><input (change)="updateEducation()" [(ngModel)]="educationCheckboxes[3]" type="checkbox" checked/> прочее</label>
+            <span class="tag-count yellow-background">{{educationValues[3]}}</span>
+        </div>
+     </div> 
+
+     <div *ngIf="_isTradeActive()">
+      <div class="singlerow">
+          <label><input (change)="updateTrade()" [(ngModel)]="tradeCheckboxes[0]" type="checkbox" checked/> супермаркеты</label>
+          <span class="tag-count light-blue-background">{{tradeValues[0]}}</span>
+      </div>
+     <div class="singlerow">
+          <label><input (change)="updateTrade()" [(ngModel)]="tradeCheckboxes[1]" type="checkbox" checked/> магазины</label>
+          <span class="tag-count light-blue-background">{{tradeValues[1]}}</span>
+      </div>
+     <div class="singlerow">
+          <label><input (change)="updateTrade()" [(ngModel)]="tradeCheckboxes[2]" type="checkbox" checked/> рынки</label>
+          <span class="tag-count light-blue-background">{{tradeValues[2]}}</span>
+      </div>
+     <div class="singlerow">
+          <label><input (change)="updateTrade()" [(ngModel)]="tradeCheckboxes[3]" type="checkbox" checked/> прочее</label>
+          <span class="tag-count light-blue-background">{{tradeValues[3]}}</span>
+      </div>
+   </div> 
+
+
+  </div> 
+</div> 
