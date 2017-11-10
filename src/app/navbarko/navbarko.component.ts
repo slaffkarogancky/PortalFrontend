@@ -11,17 +11,20 @@ export class NavbarkoComponent implements OnInit {
 
   private title: string = "Внешняя реклама";
 
-  private advertValues = ["-", "-", "-", "-", "-"];
-  private advertCheckboxes = [true, true, true, true, true];
+  private advertValues = ["-", "-", "-", "-", "-", "-", "-"];
+  private advertCheckboxes = [true, true, true, true, true, true, true];
 
-  private medicineValues = ["-", "-", "-", "-", "-"];
-  private medicineCheckboxes = [true, true, true, true, true];
+  private medicineValues = ["-", "-", "-", "-", "-", "-", "-"];
+  private medicineCheckboxes = [true, true, true, true, true, true, true];
 
-  private educationValues = ["-", "-", "-", "-", "-"];
-  private educationCheckboxes = [true, true, true, true, true];
+  private educationValues = ["-", "-", "-", "-", "-", "-", "-"];
+  private educationCheckboxes = [true, true, true, true, true, true, true];
 
-  private tradeValues = ["-", "-", "-", "-", "-"];
-  private tradeCheckboxes = [true, true, true, true, true];
+  private tradeValues = ["-", "-", "-", "-", "-", "-", "-"];
+  private tradeCheckboxes = [true, true, true, true, true, true, true];
+
+  private dugValues = ["-", "-", "-", "-", "-", "-", "-"];
+  private dugCheckboxes = [true, true, true, true, true, true, true];
 
   private selectedDocProf = "seven";
 
@@ -50,11 +53,14 @@ export class NavbarkoComponent implements OnInit {
     if (event.layerType == LayerTypiko.MEDICINE) currentValues = this.medicineValues; 
     if (event.layerType == LayerTypiko.EDUCATION) currentValues = this.educationValues; 
     if (event.layerType == LayerTypiko.TRADE) currentValues = this.tradeValues; 
+    if (event.layerType == LayerTypiko.DUG) currentValues = this.dugValues;
     currentValues[0] = (event.eventData.a) ? event.eventData.a.toString() : "-"; 
     currentValues[1] = (event.eventData.b) ? event.eventData.b.toString() : "-"; 
     currentValues[2] = (event.eventData.c) ? event.eventData.c.toString() : "-"; 
     currentValues[3] = (event.eventData.d) ? event.eventData.d.toString() : "-"; 
     currentValues[4] = (event.eventData.e) ? event.eventData.e.toString() : "-"; 
+    currentValues[5] = (event.eventData.f) ? event.eventData.f.toString() : "-"; 
+    currentValues[6] = (event.eventData.g) ? event.eventData.g.toString() : "-"; 
   }
 
   private _update(title: string, layerType : LayerTypiko, controls: any[]){
@@ -66,7 +72,9 @@ export class NavbarkoComponent implements OnInit {
         b: controls[1],
         c: controls[2], 
         d: controls[3],
-        e: controls[4]
+        e: controls[4],
+        f: controls[5],
+        g: controls[6]
       }})
   }
 
@@ -84,6 +92,10 @@ export class NavbarkoComponent implements OnInit {
 
   private updateMedicine(): void {
     this._update("Медицина", LayerTypiko.MEDICINE, this.medicineCheckboxes);
+  }
+
+  private updateDug(): void {
+    this._update("Разрытия", LayerTypiko.DUG, this.dugCheckboxes);
   }
 
   private updateDocProf(value): void {
@@ -124,4 +136,9 @@ export class NavbarkoComponent implements OnInit {
   private _isTradeActive(): boolean{
     return this.layerType == LayerTypiko.TRADE;
   }
+
+  private _isDugActive(): boolean{
+    return this.layerType == LayerTypiko.DUG;
+  }
+  
 }

@@ -14,7 +14,10 @@
          </button>
         <button (click)="updateMedicine()" type="button" id="navbar4" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Медицина">
           <img src="./assets/images/ic_local_hospital_white_18dp_2x.png"/>
-        </button>
+        </button>        
+        <button (click)="updateDug()" type="button" id="navbar5" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Разрытия">
+            <img src="./assets/images/ic_perm_data_setting_white_18dp_2x.png"/>
+           </button>	
         <!--   <button type="button" id="navbar5" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Кафе, рестораны">
            <img src="./assets/images/ic_restaurant_white_18dp_2x.png"/>
           </button>				
@@ -41,7 +44,8 @@
                           [class.blue-background]="_isDocprofActive()"  
                           [class.red-background]="_isMedicineActive()"
                           [class.yellow-background]="_isEducationActive()"
-                          [class.light-blue-background]="_isTradeActive()">{{title}}</div>
+                          [class.light-blue-background]="_isTradeActive()"
+                          [class.dug-background]="_isDugActive()">{{title}}</div>
   <div id="content">
       <div *ngIf="_isAdvertActive()">
         <div class="singlerow">
@@ -138,7 +142,38 @@
           <span class="tag-count light-blue-background">{{tradeValues[3]}}</span>
       </div>
    </div> 
+    
 
+   <div *ngIf="_isDugActive()">
+    <div class="singlerow">
+        <label><input (change)="updateDug()" [(ngModel)]="dugCheckboxes[0]" type="checkbox" checked/> водопровод</label>
+        <span class="tag-count dug-background">{{dugValues[0]}}</span>
+    </div>
+   <div class="singlerow">
+        <label><input (change)="updateDug()" [(ngModel)]="dugCheckboxes[1]" type="checkbox" checked/> электричество</label>
+        <span class="tag-count dug-background">{{dugValues[1]}}</span>
+    </div>
+   <div class="singlerow">
+        <label><input (change)="updateDug()" [(ngModel)]="dugCheckboxes[2]" type="checkbox" checked/> газопровод</label>
+        <span class="tag-count dug-background">{{dugValues[2]}}</span>
+    </div>
+   <div class="singlerow">
+        <label><input (change)="updateDug()" [(ngModel)]="dugCheckboxes[3]" type="checkbox" checked/> канализация</label>
+        <span class="tag-count dug-background">{{dugValues[3]}}</span>
+    </div>
+    <div class="singlerow">
+        <label><input (change)="updateDug()" [(ngModel)]="dugCheckboxes[4]" type="checkbox" checked/> тепло</label>
+        <span class="tag-count dug-background">{{dugValues[4]}}</span>
+    </div>
+   <div class="singlerow">
+        <label><input (change)="updateDug()" [(ngModel)]="dugCheckboxes[5]" type="checkbox" checked/> связь</label>
+        <span class="tag-count dug-background">{{dugValues[5]}}</span>
+    </div>
+   <div class="singlerow">
+        <label><input (change)="updateDug()" [(ngModel)]="dugCheckboxes[6]" type="checkbox" checked/> остальное</label>
+        <span class="tag-count dug-background">{{dugValues[6]}}</span>
+    </div>
+ </div> 
 
   </div> 
 </div> 

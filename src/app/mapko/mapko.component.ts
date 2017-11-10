@@ -81,7 +81,7 @@ export class MapkoComponent implements OnInit {
   private _removerVectorLayers(): void{
     let layersArray = this.map.getLayers().getArray();
     layersArray.forEach(layer => {
-      if (layer instanceof ol.layer.Vector){
+      if ((layer instanceof ol.layer.Vector) || (layer instanceof ol.layer.Image)){
         this.map.removeLayer(layer);
       }
     });
@@ -103,10 +103,15 @@ export class MapkoComponent implements OnInit {
   private _buffer: string;
 
   private _getPopupInfo(layerType: LayerTypiko, feature: any){
-    if (!(feature && feature.get('features').length === 1)) {
+    if (!feature) return null;    
+    /*if (!(feature && feature.get('features').length === 1)) {
       return null;
-    }    
-    const props = feature.getProperties().features[0].getProperties();
+    }  */
+    let props = feature.getProperties();
+    if (props.features){
+      props = props.features[0].getProperties();
+    }
+    //const props = feature.getProperties().features[0].getProperties();
     this._buffer = "";
     if (layerType == LayerTypiko.ADVERTISE){
       this._addDetailRow("Заказчик", props.ctm);
@@ -127,6 +132,18 @@ export class MapkoComponent implements OnInit {
     }
     else if (layerType == LayerTypiko.EDUCATION || layerType == LayerTypiko.MEDICINE || layerType == LayerTypiko.TRADE){
       this._addDetailRow("Описание", props.d);
+    }
+    else if (layerType == LayerTypiko.DUG){
+      this._addDetailRow("Наименование работ", props.w);	
+      this._addDetailRow("Тип работ", props.n);	      	
+      this._addDetailRow("Заказчик работ", props.o);	
+      this._addDetailRow("Адрес разрытия", props.a);	
+      this._addDetailRow("Адрес пересечения", props.ad);
+      this._addDetailRow("Площадь разрытия", props.v);
+      this._addDetailRow("Дата начала работ", props.std);
+      this._addDetailRow("Дата окончания работ", props.spd);
+      this._addDetailRow("Номер разрешения", props.nr);	
+      this._addDetailRow("Дата разрешения", props.rd);
     }
     return this._buffer;
   }

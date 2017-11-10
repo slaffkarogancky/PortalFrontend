@@ -26,6 +26,9 @@ export class AdregServiceService {
       const params: string = '?from=' + this._formatDate(_32DaysAgo) + '&to=' + this._formatDate(today);
       return this._loadData(layerType, this.DOCPROF_URL + params, input, null, this._docprofLayerHandler);
     }
+    else if (layerType == LayerTypiko.DUG){
+      return this._loadData(layerType, this.DUG_URL, input, null, this._dugLayerHandler);
+    }
     else {
       return this._loadData(layerType, this.CITY_INFRASTRUCTURE_URL, input, this._filterInfrastructureCache, this._infrastructureLayerHandler);
     }
@@ -36,6 +39,8 @@ export class AdregServiceService {
   private readonly DOCPROF_URL: string = 'http://10.0.0.22:2018/portal/api/v1/docprof'; 
 
   private CITY_INFRASTRUCTURE_URL: string = 'http://cdr.citynet.kharkov.ua/webaccesspoints/Home/loadFeatures';
+
+  private DUG_URL: string = 'http://10.0.0.22:2018/portal/api/v1/dug';
 
   
   private readonly _configuration: Map<LayerTypiko, any> = new Map<LayerTypiko, any>();
@@ -56,6 +61,8 @@ export class AdregServiceService {
     this._configuration.set(LayerTypiko.MEDICINE, this._createConfiguration(commonCache, '#FA8072', "./assets/images/red-single.png"));
     this._configuration.set(LayerTypiko.EDUCATION, this._createConfiguration(commonCache, '#FF8C00', "./assets/images/yellow-single.png"));
     this._configuration.set(LayerTypiko.TRADE, this._createConfiguration(commonCache, '#00BFFF', "./assets/images/light-blue-single.png"));
+
+    this._configuration.set(LayerTypiko.DUG, this._createConfiguration([], '#B22222', "./assets/images/green-single.png"));
   }
 
   private _getStyle(layerType: LayerTypiko, feature: any): any {    
@@ -102,11 +109,89 @@ export class AdregServiceService {
       }
     });
   }
+
+  private _advertLayerHandler(input: any) : LayerInfoResult{
+    const count = [0, 0, 0, 0, 0];
+    const filter = [input.eventData.a, input.eventData.b, input.eventData.c, input.eventData.d, input.eventData.e];
+    const bufferok = [];
+    const adregCache = this._configuration.get(LayerTypiko.ADVERTISE).dataCache;
+    adregCache.forEach(feature => {  const gt = feature.getProperties().gt;
+                                           count[gt]++;
+                                           if (filter[gt]){
+                                              bufferok.push(feature);
+                                  }});
+    return {
+      layer: this._createClusteredLayer(LayerTypiko.ADVERTISE, bufferok),
+      layerType: LayerTypiko.ADVERTISE,    
+      attributes: { a: count[0], b: count[1], c: count[2], d: count[3], e: count[4] }
+    };
+  }
+
+  private _dugLayerHandler(input: any) : LayerInfoResult{
+    const dugCache = this._configuration.get(LayerTypiko.DUG).dataCache;
+    const filter = [input.eventData.a, 
+                    input.eventData.b, 
+                    input.eventData.c, 
+                    input.eventData.d, 
+                    input.eventData.e, 
+                    input.eventData.f, 
+                    input.eventData.g ];
+    const count = [0, 0, 0, 0, 0, 0, 0];
+    const bufferok = [];
+    dugCache.forEach(feature => {
+    /* 0) 1 Водопровод
+        1) 4 Электричество
+        2) 5 Газопровод
+        3) 6, 7 Канализация
+        4) 8 Тепло
+        5) 9 Связь
+        6) 10 Остальные  */
+        const tt = feature.getProperties().tt;
+        let currType = 6;
+        if (tt === 1) currType = 0;
+        if (tt === 4) currType = 1;
+        if (tt === 5) currType = 2;
+        if (tt === 6 || tt === 7) currType = 3;
+        if (tt === 8) currType = 4;
+        if (tt === 9) currType = 5;
+        count[currType]++;
+        if (filter[currType]){
+          bufferok.push(feature);
+        }        
+    });
+    var vectorSource = new ol.source.Vector({
+      features: bufferok
+    });
+    var imageVector = new ol.source.ImageVector({
+      source: vectorSource,
+      style: new ol.style.Style({
+        fill: new ol.style.Fill({
+          color: 'rgba(178, 34, 34, 0.3)'
+        }),
+        stroke: new ol.style.Stroke({
+          color: '#B22222',
+          width: 3
+        })
+      })
+    });
+    const vectorLayer =  new ol.layer.Image({source: imageVector});
+    return {
+      layer: vectorLayer,
+      layerType: LayerTypiko.DUG, 
+      attributes: { a: count[0], b: count[1], c: count[2], d: count[3], e: count[4], f: count[5], g: count[6]  }
+    };
+  }
   
   private _cacheGeojsonData(res: Response, cache: any) {
     const body = res.json();
     body.features.forEach((item, index) => {
-      let coords = new ol.geom.Point(ol.proj.transform(item.geometry.coordinates, 'EPSG:4326', 'EPSG:3857'));
+      let coords;
+      if (item.geometry.type === 'Point'){
+        coords = new ol.geom.Point(ol.proj.transform(item.geometry.coordinates, 'EPSG:4326', 'EPSG:3857'));
+      }
+      else if (item.geometry.type === 'Polygon'){
+        coords = new ol.geom.Polygon(item.geometry.coordinates);
+      }
       let feature: ol.Feature = new ol.Feature(coords);
       item.properties.i_d_ = index;  
       feature.setProperties(item.properties);
@@ -131,23 +216,6 @@ export class AdregServiceService {
                                         return result; })
                       .catch(this._handlePromiseError);
     }
-  }
-
-  private _advertLayerHandler(input: any) : LayerInfoResult{
-    const count = [0, 0, 0, 0, 0];
-    const filter = [input.eventData.a, input.eventData.b, input.eventData.c, input.eventData.d, input.eventData.e];
-    const bufferok = [];
-    const adregCache = this._configuration.get(LayerTypiko.ADVERTISE).dataCache;
-    adregCache.forEach(feature => {  const gt = feature.getProperties().gt;
-                                           count[gt]++;
-                                           if (filter[gt]){
-                                              bufferok.push(feature);
-                                  }});
-    return {
-      layer: this._createClusteredLayer(LayerTypiko.ADVERTISE, bufferok),
-      layerType: LayerTypiko.ADVERTISE,    
-      attributes: { a: count[0], b: count[1], c: count[2], d: count[3], e: count[4] }
-    };
   }
 
   private _docprofLayerHandler(input: any) : LayerInfoResult{

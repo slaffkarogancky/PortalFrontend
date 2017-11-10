@@ -5,7 +5,8 @@ export enum LayerTypiko {
     WEBDOCPROF,
     MEDICINE,
     EDUCATION,
-    TRADE
+    TRADE,
+    DUG
 }
 
 export interface LayerChangeEvent {
