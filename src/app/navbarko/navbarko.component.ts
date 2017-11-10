@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ElementRef} from '@angular/core';
 import { LayerTypiko, LayerChangeEvent } from '../commons';
 
 @Component({
@@ -39,7 +39,7 @@ export class NavbarkoComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor() { }
+  constructor(private detailes:ElementRef) { }
 
   public updateStatistic(event: LayerChangeEvent){
     if (event.layerType == LayerTypiko.WEBDOCPROF){
@@ -140,5 +140,13 @@ export class NavbarkoComponent implements OnInit {
   private _isDugActive(): boolean{
     return this.layerType == LayerTypiko.DUG;
   }
-  
+ 
+  public toggleDetailes():void{
+      var dWidth = this.detailes.nativeElement.querySelector('div.details').style.display;
+     // (dWidth == "none" || dWidth == "")? this.detailes.nativeElement.querySelector('div.details').style.display="block" : this.detailes.nativeElement.querySelector('div.details').style.display="none";
+      // if (dWidth == "none" || dWidth == "")
+      //   this.detailes.nativeElement.querySelector('div.details').style.display="block";
+      // else
+      //   this.detailes.nativeElement.querySelector('div.details').style.display="none";
+  }
 }

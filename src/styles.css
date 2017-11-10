@@ -25,3 +25,171 @@ html{
   margin-top: -2px;
 }
   
+  /* .details{
+  display: block;
+}       */
+
+ #map{
+  height: 100%;
+} 
+/*navbarko --------------------------------*/
+/* navbarko{
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  max-width: 370px;
+} */
+
+navbarko > nav {
+    position: absolute !important;
+    top: 80px;
+    left: 10px;
+    max-width: 370px;
+}
+
+/*ap-comp --------------------------------*/
+ap-comp{
+    position: absolute;
+    top: calc(30px + .5em);
+    left: 10px;
+}
+ap-comp > nav > button.navbar-toggler, 
+ap-comp > nav > .navbar-collapse > form > button,
+navbarko > nav > .navbar-collapse > form > button,
+navbarko > nav > button.navbar-toggler{
+    background: linear-gradient(to top, #009344, yellowgreen);
+    height: 40px
+}
+navbarko > nav > .navbar-collapse > form > button{
+  width:50px;
+  height: 40px;
+}  
+ap-comp > nav > .navbar-collapse > form > button{
+  height: 38px;
+}
+ap-comp img.imgBtn,
+navbarko img.imgBtn{
+    width:24px;
+    height: 24px
+}
+ap-comp > nav > .navbar-collapse > form > input,
+ap-comp > nav > .navbar-collapse > form > select,
+ap-comp > nav > .navbar-collapse > form > button,
+navbarko > nav > .navbar-collapse > form > button{
+    box-shadow: 0.6em 0.6em 5px rgba(122,160,122,0.8);
+    border-color: #28a745;
+}
+  /**/
+  ipanel > span {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+  /**/
+        .tooltip {
+        position: relative;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 4px;
+        color: white;
+        padding: 4px 8px;
+        opacity: 0.7;
+        white-space: nowrap;
+      }
+      .tooltip-measure {
+        opacity: 1;
+        font-weight: bold;
+      }
+      .tooltip-static {
+        background-color: #ffcc33;
+        color: black;
+        border: 1px solid white;
+      }
+      .tooltip-measure:before,
+      .tooltip-static:before {
+        border-top: 6px solid rgba(0, 0, 0, 0.5);
+        border-right: 6px solid transparent;
+        border-left: 6px solid transparent;
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        margin-left: -7px;
+        left: 50%;
+      }
+      .tooltip-static:before {
+        border-top-color: #ffcc33;
+      }  
+/*center modal window*/
+
+ /* .modal-dialog {
+    transform: translate(0, - 50%);
+     top: calc(50% - 120px); 
+    margin: 0 auto;
+}  */
+
+  .modal.show .modal-dialog {
+    -webkit-transform: translate(0,-50%);
+    -o-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+    top: 50%;
+    margin: 0 auto;
+}  
+     /* .modal {
+      text-align: center;
+      padding: 0!important;
+    }
+    .modal:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -4px;
+    }
+    .modal-dialog {
+      display: inline-block;
+      text-align: left;
+      vertical-align: middle;
+    }  */
+/*modal window----------------*/
+.modal-header {
+    background: linear-gradient(to top, #009344, yellowgreen);
+    color: #fff;
+}
+
+/*---------------------------*/
+.my-nav-btn > img {
+    width: 36px;
+    height: 36px;
+}
+
+.navpanel-btn{
+    background: linear-gradient(to top, #009344, yellowgreen);
+    color:#fff;
+}
+/*top
+.navbarpanel{
+    position: absolute;
+    top: 40px;   
+    width: 100%; 
+}*/
+/*низ*/
+.navbarpanel{
+    position: absolute;
+    bottom: .5em;   
+    /* left: .5em; */
+    width: 100%;  
+}
+
+.navbarpanel button{
+    box-shadow: 0.6em 0.6em 5px rgba(122,160,122,0.8);
+    padding: 1px 6px;
+}
+
+.navbar-toggler-icon .icon-bar{
+    width: 36px !important;
+    height: 36px !important;
+}
+
+/*feedback*/
+div.feedback-btns{
+    text-align: right;
+}

@@ -3,7 +3,10 @@ import { AdregServiceService } from './adreg-service.service';
 import { LayerTypiko, LayerChangeEvent } from './commons';
 import { NavbarkoComponent } from './navbarko/navbarko.component';
 import { MapkoComponent } from './mapko/mapko.component';
-
+import { ApComponent } from './ap/ap.component';
+import { NavpanelComponent } from './navpanel/navpanel.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { HelpComponent } from './help/help.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,4 +32,8 @@ export class AppComponent {
     this._map.showLayer(event.layerType, event);
   }
   
+  private ontocListBtnClick(event):void{
+    this._navbar.toggleDetailes();
+  }
+
 }

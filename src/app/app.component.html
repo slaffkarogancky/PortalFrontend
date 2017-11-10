@@ -11,14 +11,21 @@
               <div class="col-sm-5 hidden-sm-down">
               <p id="titlo" >Харьков - город, в котором хочется жить</p>
               </div>
-              <div class="col-sm-7">
+              <!-- <div class="col-sm-7">
                 <navbarko (onNavbarLayerChange)="onNavbarLayerChanged($event)"></navbarko>
-              </div>
+              </div> -->
             </div>
           </div>      
         </div>
         <div class="main">                
           <mapko (onLayerLoaded)="onLayerMapLoaded($event)"></mapko>
+          <navbarko (onNavbarLayerChange)="onNavbarLayerChanged($event)"></navbarko>
+          <ap-comp></ap-comp>
+          <navpanel (ontocListBtnClick)="ontocListBtnClick($event)" 
+                    (onZoomToFullExtentClick)="onZoomToFullExtentClick($event)" 
+                    (onMeasureBtnClick)="onMeasureBtnClick($event)"></navpanel>   
+          <feedback></feedback>
+          <help></help>
         </div>
         <!-- футер -->
         <div class="footer">

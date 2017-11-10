@@ -1,0 +1,35 @@
+<div class="navbarpanel">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-sx-6">
+        <!-- <nav class="navbar navbar-expand-sm navbar-light">
+            <button class="navbar-toggler navpanel-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse btnPanel" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-outline-success my-nav-btn navpanel-btn"><img src="./assets/images/ic_home_white_18dp_2x.png"/></button>
+                  <button type="button" class="btn btn-outline-success my-nav-btn navpanel-btn"><img src="./assets/images/ic_public_white_18dp_2x.png"/></button>
+                  <button type="button" class="btn btn-outline-success my-nav-btn navpanel-btn"><img src="./assets/images/ic_mail_outline_white_18dp_2x.png"/></button>          
+                  <button type="button" class="btn btn-outline-success my-nav-btn navpanel-btn"><img src="./assets/images/measure.png"/></button>
+                  <button type="button" class="btn btn-outline-success my-nav-btn navpanel-btn"><img src="./assets/images/ic_help_outline_white_18dp_2x.png"/></button>          
+                </div>       
+              </li>
+            </ul>
+          </div>  
+        </nav> -->
+        <!-- <div class="btn-group mr-2" role="group" aria-label="First group"> -->
+        <div class="mr-1" role="group" aria-label="First group">          
+          <!-- <button type="button" class="btn btn-outline-success my-nav-btn navpanel-btn"><img src="./assets/images/ic_view_list_white_24dp_2x.png"/></button>           -->
+          <button id="tocListBtn" type="button" class="btn btn-outline-success my-nav-btn navpanel-btn mr-1" title="Типи об'єктів" (click)="navpanelCl($event)"><img src="./assets/images/ic_toc_white_18dp_2x.png"/></button>
+          <button id="zoomToFullBtn" type="button" class="btn btn-outline-success my-nav-btn navpanel-btn mr-1" title="Все місто" (click)="navpanelCl($event)"><img src="./assets/images/ic_public_white_18dp_2x.png"/></button>
+          <button id="measureBtn" type="button" [attr.interaction]="interaction" class="btn btn-outline-success my-nav-btn navpanel-btn mr-1" title="Лінійка"  (click)="navpanelCl($event)"><img src="./assets/images/measure.png"/></button>          
+          <button id="feedbackBtn" type="button" class="btn btn-outline-success my-nav-btn navpanel-btn mr-1" title="Зворотній зв'язок" data-toggle="modal" data-target="#feedback"><img src="./assets/images/ic_mail_outline_white_18dp_2x.png"/></button>          
+          <button id="helpBtn" type="button" class="btn btn-outline-success my-nav-btn navpanel-btn" title="Допомога" data-toggle="modal" data-target="#help"><img src="./assets/images/ic_help_outline_white_18dp_2x.png"/></button>          
+        </div>     
+      </div>
+    </div>
+  </div>
+</div>

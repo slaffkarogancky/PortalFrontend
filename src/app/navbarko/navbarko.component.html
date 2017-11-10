@@ -1,5 +1,32 @@
-<div class="btnnavbar">
-        
+  <nav class="navbar navbar-expand-sm navbar-light px-0 py-0 my-2">
+  <button class="navbar-toggler address-btn " type="button" data-toggle="collapse" data-target="#projectsContent" aria-controls="projectsContent" aria-expanded="false" aria-label="Toggle navigation" title="Набори даних">
+    <span><img class="imgBtn" src="./assets/images/ic_layers_white_24dp_2x.png"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="projectsContent">
+     <form class="form-inline my-1 my-lg-0">
+        <button (click)="updateAdvert()" type="button" id="navbar2" class="btn btn-outline-success my-nav-btn mr-1 mb-1" data-toggle="tooltip" data-placement="bottom" title="Зовнішня реклама">
+          <img calss="imgBtn" src="./assets/images/ic_dvr_white_18dp_2x.png"/>
+        </button>  
+        <button (click)="updateDocProf()" type="button" id="navbar1" class="btn btn-outline-success my-nav-btn mr-1 mb-1" data-toggle="tooltip" data-placement="bottom" title="Звернення громадян">
+          <img calss="imgBtn" src="./assets/images/ic_contact_mail_white_18dp_2x.png"/>
+        </button>
+        <button (click)="updateEducation()" type="button" id="navbar3" class="btn btn-outline-success my-nav-btn mr-1 mb-1" data-toggle="tooltip" data-placement="bottom" title="Освіта">
+          <img calss="imgBtn" src="./assets/images/ic_school_white_18dp_2x.png"/>
+        </button>
+        <button (click)="updateTrade()" type="button" id="navbar11" class="btn btn-outline-success my-nav-btn mr-1 mb-1" data-toggle="tooltip" data-placement="bottom" title="Торговля">
+          <img calss="imgBtn" src="./assets/images/ic_shopping_cart_white_18dp_2x.png"/>
+         </button>
+        <button (click)="updateMedicine()" type="button" id="navbar4" class="btn btn-outline-success my-nav-btn mr-1 mb-1" data-toggle="tooltip" data-placement="bottom" title="Медицина">
+          <img calss="imgBtn" src="./assets/images/ic_local_hospital_white_18dp_2x.png"/>
+        </button>
+        <button (click)="updateDug()" type="button" id="navbar5" class="btn btn-outline-success my-nav-btn mr-1 mb-1" data-toggle="tooltip" data-placement="bottom" title="Разрытия">
+          <img src="./assets/images/ic_perm_data_setting_white_18dp_2x.png"/>
+        </button>
+    </form>
+  </div>
+</nav>
+
+<!-- <div class="btnnavbar">        
         <button (click)="updateAdvert()" type="button" id="navbar2" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Внешняя реклама">
           <img src="./assets/images/ic_dvr_white_18dp_2x.png"/>
         </button>  
@@ -17,7 +44,7 @@
         </button>        
         <button (click)="updateDug()" type="button" id="navbar5" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Разрытия">
             <img src="./assets/images/ic_perm_data_setting_white_18dp_2x.png"/>
-           </button>	
+           </button>	 -->
         <!--   <button type="button" id="navbar5" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Кафе, рестораны">
            <img src="./assets/images/ic_restaurant_white_18dp_2x.png"/>
           </button>				
@@ -35,9 +62,9 @@
         </button>
         <button type="button" id="navbar10" class="btn btn-outline-success my-nav-btn" data-toggle="tooltip" data-placement="bottom" title="Спорт">
           <img src="./assets/images/ic_pool_white_18dp_2x.png"/>
-        </button> -->
+        </button> 
 
-</div>
+</div>-->
 
 <div class="details">
   <div id="detaildfooter" [class.green-background]="_isAdvertActive()" 
@@ -45,7 +72,11 @@
                           [class.red-background]="_isMedicineActive()"
                           [class.yellow-background]="_isEducationActive()"
                           [class.light-blue-background]="_isTradeActive()"
-                          [class.dug-background]="_isDugActive()">{{title}}</div>
+                          [class.dug-background]="_isDugActive()">{{title}}
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="toggleDetailes()">
+      <span aria-hidden="true" class="mb-1">&times;</span>
+    </button>                                                    
+    </div>
   <div id="content">
       <div *ngIf="_isAdvertActive()">
         <div class="singlerow">
